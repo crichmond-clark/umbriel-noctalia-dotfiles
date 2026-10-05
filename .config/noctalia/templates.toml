@@ -1,0 +1,15 @@
+# Keep Starship's prompt colours synced to Noctalia's current theme.
+[theme.templates]
+builtin_ids = ["starship", "foot"]
+
+# Compatible Umbriel palette template (the shipped one contains unsupported scratchpad keys).
+[theme.templates.user.umbriel]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/umbriel.toml"
+output_path = "$XDG_CONFIG_HOME/umbriel/noctalia.toml"
+post_hook = "bash /usr/share/noctalia/assets/templates/umbriel/apply.sh"
+hook_async = false
+
+# Sync the active DNF Zen profile with the shell palette.
+[theme.templates.user.zen]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/zen.css"
+output_path = "$XDG_CONFIG_HOME/zen/a8macrtd.Default (release)-1/chrome/noctalia.css"

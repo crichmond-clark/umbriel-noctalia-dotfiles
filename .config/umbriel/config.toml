@@ -1,0 +1,144 @@
+[general]
+autostart = ["noctalia"]
+
+# 2256x1504 on a 13.5-inch panel is too small at 100%.
+[output.eDP-1]
+scale = 1.5
+
+# Put Ctrl beside Space, like the Command position on a Mac keyboard.
+[input.keyboard]
+options = "ctrl:swap_lalt_lctl,ctrl:swap_ralt_rctl"
+
+# Touchpad: enable tap/double-tap and use two-finger click/tap as right click.
+[input.touchpad]
+tap = true
+click_method = "clickfinger"
+tap_button_map = "left_right_middle"
+
+# Defining [keybinds] replaces Umbriel's built-in bind set.
+[keybinds]
+
+# Screen brightness keys: explicitly target the laptop display.
+"XF86MonBrightnessDown" = "spawn:noctalia msg brightness-down eDP-1 5"
+"XF86MonBrightnessUp" = "spawn:noctalia msg brightness-up eDP-1 5"
+
+# Speaker volume keys (with Noctalia OSD).
+"XF86AudioLowerVolume" = "spawn:noctalia msg volume-down 5"
+"XF86AudioRaiseVolume" = "spawn:noctalia msg volume-up 5"
+"XF86AudioMute" = { action = "spawn:noctalia msg volume-mute", repeat = false }
+
+# Launchers and applications
+"Mod+Return" = { action = "spawn:foot", repeat = false }
+"Mod+B" = { action = "spawn:zen-browser", repeat = false }
+"Mod+D" = { action = "spawn:noctalia msg panel-toggle launcher", repeat = false }
+"Mod+E" = { action = "spawn:nautilus", repeat = false }
+"Mod+Shift+L" = { action = "cheatsheet-toggle", repeat = false }
+"Mod+Ctrl+L" = { action = "spawn:noctalia msg session lock", repeat = false }
+"Mod+Shift+S" = { action = "spawn:noctalia msg screenshot-region", repeat = false }
+"Print" = { action = "spawn:noctalia msg screenshot-fullscreen", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+"Mod+Escape" = { action = "session-quit", repeat = false }
+"Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+
+# Focus windows
+"Mod+Left" = "window-focus-left"
+"Mod+Down" = "window-focus-down"
+"Mod+Up" = "window-focus-up"
+"Mod+Right" = "window-focus-right"
+"Mod+H" = "window-focus-left"
+"Mod+J" = "window-focus-down"
+"Mod+K" = "window-focus-up"
+"Mod+L" = { action = "workspace-set-layout:toggle", repeat = false }
+
+# Move windows and columns
+"Mod+Shift+Left" = "column-move-left"
+"Mod+Shift+Down" = "window-move-down"
+"Mod+Shift+Up" = "window-move-up"
+"Mod+Shift+Right" = "column-move-right"
+"Mod+Comma" = "window-consume-left"
+"Mod+Period" = "window-consume-right"
+
+# Window state and layout
+"Mod+T" = { action = "window-toggle-floating", repeat = false }
+"Mod+Shift+T" = { action = "window-focus-switch-floating", repeat = false }
+"Mod+P" = { action = "window-toggle-pinned", repeat = false }
+"Mod+M" = { action = "window-toggle-maximize-to-edges", repeat = false }
+"Mod+F" = { action = "window-toggle-maximize", repeat = false }
+"Mod+Shift+F" = { action = "window-toggle-fullscreen", repeat = false }
+"Mod+R" = "window-cycle-primary-extent"
+"Mod+Shift+R" = "window-cycle-primary-extent-back"
+"Mod+O" = { action = "overview-toggle", repeat = false }
+"Mod+WheelUp" = "window-focus-left"
+"Mod+WheelDown" = "window-focus-right"
+
+# Workspaces: Super+1..9 to switch; Super+Shift+1..9 to send window
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+"Mod+6" = "workspace-switch:6"
+"Mod+7" = "workspace-switch:7"
+"Mod+8" = "workspace-switch:8"
+"Mod+9" = "workspace-switch:9"
+"Mod+Shift+1" = "window-move-to-workspace:1"
+"Mod+Shift+2" = "window-move-to-workspace:2"
+"Mod+Shift+3" = "window-move-to-workspace:3"
+"Mod+Shift+4" = "window-move-to-workspace:4"
+"Mod+Shift+5" = "window-move-to-workspace:5"
+"Mod+Shift+6" = "window-move-to-workspace:6"
+"Mod+Shift+7" = "window-move-to-workspace:7"
+"Mod+Shift+8" = "window-move-to-workspace:8"
+"Mod+Shift+9" = "window-move-to-workspace:9"
+
+# General scratchpad: send focused window, toggle, restore, cycle
+"Mod+Shift+Space" = { action = "window-move-to-scratchpad:general", repeat = false }
+"Mod+Space" = { action = "spawn:voxtype record toggle", repeat = false }
+"Mod+Alt+Space" = { action = "scratchpad-toggle:general", repeat = false }
+"Mod+Ctrl+Space" = { action = "window-restore-from-scratchpad:general", repeat = false }
+"Mod+Tab" = "scratchpad-focus-next:general"
+
+# Spotify: launch if needed, otherwise show/hide without stopping playback
+"Mod+S" = { action = "scratchpad-toggle:spotify", repeat = false }
+
+# Foot terminal scratchpad
+"Mod+grave" = { action = "scratchpad-toggle:terminal", repeat = false }
+
+# Iotas notes scratchpad
+"Mod+N" = { action = "scratchpad-toggle:notes", repeat = false }
+
+[[scratchpad]]
+name = "general"
+
+[[scratchpad]]
+name = "spotify"
+spawn_when_empty = "spotify-launcher"
+
+[[scratchpad]]
+name = "terminal"
+spawn_when_empty = "foot --app-id=foot-scratchpad"
+
+[[scratchpad]]
+name = "notes"
+spawn_when_empty = "flatpak run org.gnome.World.Iotas"
+
+[[window_rule]]
+match.app_id = '^(spotify|Spotify|com\.spotify\.Client)$'
+default_scratchpad = "spotify"
+
+[[window_rule]]
+match.app_id = '^foot-scratchpad$'
+default_scratchpad = "terminal"
+
+[[window_rule]]
+match.app_id = '^org\.gnome\.World\.Iotas$'
+default_scratchpad = "notes"
+
+[layout.scrolling]
+default_extent_fraction = 0.5
+
+[include]
+files = []
+
+[include.optional]
+files = ["noctalia.toml"]

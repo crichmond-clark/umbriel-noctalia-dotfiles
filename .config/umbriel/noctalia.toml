@@ -1,0 +1,21 @@
+# Compatible subset of Noctalia's built-in Umbriel palette template.
+[colors]
+background = "#1f1f25FF"
+text_primary = "#e4e1eaFF"
+text_muted = "#c6c5d4FF"
+accent_primary = "#bdc2ffFF"
+accent_secondary = "#c0c3f1FF"
+warning = "#f2afffFF"
+error = "#ffb4abFF"
+insert_hint = "#f2afff80"
+backdrop = "#454652FF"
+
+[colors.border]
+focused = "#bdc2ffFF"
+unfocused = "#454652FF"
+outer = "#131319FF"
+
+[colors.overview]
+background_tint = "#13131988"
+badge = "#bdc2ffFF"
+workspace_background = "#131319FF"
