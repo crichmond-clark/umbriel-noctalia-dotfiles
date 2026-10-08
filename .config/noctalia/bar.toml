@@ -1,7 +1,8 @@
 # Keep the existing widgets and layout, but make them separate islands.
 [bar.default]
+start = ["workspaces", "media"]
 center = ["clock"]
-end = ["media", "gabedunn/voxtype:status", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
+end = ["gabedunn/voxtype:status", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
 background_opacity = 0.0
 border_width = 0.0
 shadow = false
@@ -14,7 +15,7 @@ margin_ends = 0
 padding = 6
 widget_spacing = 10
 
-# Keep the media island from crowding the centered clock.
+# Keep the now-playing widget compact beside workspaces.
 [widget.media]
 max_length = 170
 
