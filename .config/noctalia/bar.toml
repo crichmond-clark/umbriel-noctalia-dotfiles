@@ -1,6 +1,6 @@
 # Keep the existing widgets and layout, but make them separate islands.
 [bar.default]
-start = ["workspaces", "media"]
+start = ["launcher", "workspaces", "media"]
 center = ["clock"]
 end = ["gabedunn/voxtype:status", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
 background_opacity = 0.0
